@@ -1,12 +1,11 @@
-export const BASE_URL = 'https://akabab.github.io/superhero-api/api/all.json';
+export const BASE_URL = 'https://akabab.github.io/superhero-api/api';
 
 export async function fetchHeroes() {
-  try {
-    const response = await fetch(BASE_URL);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching heroes:', error);
-    throw error;
-  }
+  const res = await fetch(`${BASE_URL}/all.json`);
+  return await res.json();
+}
+
+export async function fetchHeroById(id) {
+  const res = await fetch(`${BASE_URL}/id/${id}.json`);
+  return await res.json();
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from '../styles/heroStyles.module.css';
+import { Text, Image, TouchableOpacity } from 'react-native';
+import styles from '../styles/heroStyles';
 
-export default function HeroCard({ hero, onClick }) {
+export default function HeroCard({ hero, onPress }) {
   return (
-    <div className={styles.card} onClick={() => onClick(hero)}>
-      <img src={hero.images.md} alt={hero.name} className={styles.image} />
-      <h3 className={styles.name}>{hero.name}</h3>
-    </div>
+    <TouchableOpacity style={styles.card} onPress={() => onPress(hero.id)}>
+      <Image source={{ uri: hero.images.md }} style={styles.image} />
+      <Text style={styles.name}>{hero.name}</Text>
+    </TouchableOpacity>
   );
 }
