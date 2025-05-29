@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react';
 import { Text, Image, ScrollView, ActivityIndicator } from 'react-native';
-import { fetchHeroById } from '../api/superHeroApi';
 import styles from '../styles/heroStyles';
+import useHeroById from '../hooks/useHeroById';
 
 export default function HeroDetailScreen({ route }) {
   const { id } = route.params;
-  const [hero, setHero] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchHeroById(id)
-      .then(setHero)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, [id]);
+  const { hero, loading } = useHeroById(id);
 
   if (loading) return <ActivityIndicator size="large" />;
 
